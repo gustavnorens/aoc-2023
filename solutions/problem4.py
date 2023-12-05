@@ -9,7 +9,7 @@ def p1(lines):
     return sum(res)
 
 def score(game):
-    game = game[10:]
+    _, game = game.split(": ")
     wins, scores = game.split("|")
     wins = wins.split()
     scores = scores.split()
