@@ -1,5 +1,7 @@
 import uf
 import time
+import numpy as np
+import math
 start_time = time.time()
 
 lines = uf.read_lines("../in/6.in")[:-1]
@@ -17,30 +19,25 @@ def parse(lines):
     time = "".join(l[0])
     distance = "".join(l[1])
     
-    return list(zip(times, distances)), time, distance
+    return list(zip(times, distances)), int(time), int(distance)
 
 def p1(lines):
     parsed,_,_ = parse(lines)
     total = 1
     for time, dist in parsed:
-        counter = 0
-        for i in range(0, time):
-            if i*(time-i) > dist:
-                counter += 1
-        total *= counter
-        print(counter)
+            coeffs = [-1,time,-dist]
+            roots = list(map(math.ceil,np.roots(coeffs)))
+            total *= roots[0] - roots[1]
     return total
-
-print(p1(lines))
 
 def p2(lines):
     _, time, dst = parse(lines)
-    counter = 0
-    for i in range(0, int(time)):
-        print(i)
-        print(time)
-        if i*(int(time)-i) > int(dst):
-            counter += 1
-    return total
+    coeffs = [-1,time,-dst]
+    roots = list(map(math.ceil,np.roots(coeffs)))
+    return roots[0] - roots[1]
 
+print(p1(lines))
 print(p2(lines))
+
+print("--- %s seconds ---" % (time.time() - start_time))     
+
