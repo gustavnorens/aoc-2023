@@ -2,7 +2,6 @@ import time
 start_time = time.time()
 import uf
 
-
 lines = uf.read_lines("../in/7.in")[:-1]
 tests = uf.read_lines("../test/7.in")[:-1]
 
@@ -14,6 +13,7 @@ def parse(lines):
     
 def multiply(pair):
     return pair[0] * pair[1]
+
 def score_p1(pair):
     scores = sorted([pair[0].count(c) for c in set(pair[0])]+[0], reverse=True)
     ind = int(pair[0].replace("A", "E").replace("K", "D").replace("Q", "C").replace("J","B").replace("T","A"), 16)
