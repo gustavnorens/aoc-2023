@@ -2,7 +2,7 @@ import uf
 import time
 start_time = time.time()
 
-input = uf.read_lines("../in/input5.txt")[:-1]
+input = uf.read_lines("../in/day5.input")[:-1]
 test = uf.read_lines("../test/test5.in")[:-1]
 
 def p1(input):
@@ -17,7 +17,7 @@ def p2(input):
     seeds, maps = parse(input)
     seed_range = []
     for i in range(0,len(seeds),2):
-        for j in range(seeds[i], seeds[i]+seeds[i+1],3000):
+        for j in range(seeds[i], seeds[i]+seeds[i+1],10000):
             seed_range.append(j)
     seed_range = list(zip(seed_range, [False] * len(seed_range)))
     locations = convert(seed_range.copy(), maps)
@@ -85,20 +85,20 @@ def convertRanges(ranges, maps):
             for line in m[1:]:
                 dst, src, length = list(map(int,line.split()))
                 if src <= r.start and src+length >= r.end:
-                    new_ranges.append(Range(r.start+dst-src-1, r.end+dst-src))
+                    new_ranges.append(Range(r.start+dst-src, r.end+dst-src))
                     break
                 elif r.start <= src <= r.end and src+length >= r.end:
                     ranges.append(Range(r.start,src-1))
-                    new_ranges.append(Range(dst-1,r.end+dst-src))
+                    new_ranges.append(Range(dst,r.end+dst-src))
                     break
                 elif src <= r.start and r.start <= src+length <= r.end:
                     ranges.append(Range(src+length+1,r.end))
-                    new_ranges.append(Range(r.start+dst-src-1,dst+length+1))
+                    new_ranges.append(Range(r.start+dst-src,dst+length+1))
                     break
                 elif src >= r.start and src+length <= r.end:
                     ranges.append(Range(r.start,src-1))
                     ranges.append(Range(src+length,r.end))
-                    new_ranges.append(Range(dst-1,dst+length))
+                    new_ranges.append(Range(dst,dst+length))
                     break
             else:
                 new_ranges.append(r)
@@ -116,7 +116,7 @@ def newp2(lines):
 
 
 print(p1(input))
-print(newp2(input)) #Not clean whatsoever, but atleast better than orignial bruteforce solution
+print(p2(input)) #Not clean whatsoever, but atleast better than orignial bruteforce solution
 
 print("--- %s seconds ---" % (time.time() - start_time))     
 
