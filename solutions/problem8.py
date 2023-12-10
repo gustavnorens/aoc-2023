@@ -1,7 +1,6 @@
 import time
 start_time = time.time()
 import uf
-from collections import Counter
 import math
 
 lines = uf.read_lines("../in/8.in")[:-1]
