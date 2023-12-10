@@ -35,7 +35,5 @@ def solve(lines):
      return sum(lasts), sum(firsts)
  
 print(solve(lines))
-
-
-    
+print("--- %s seconds ---" % (time.time() - start_time))
 
