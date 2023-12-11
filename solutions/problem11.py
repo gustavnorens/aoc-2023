@@ -33,16 +33,16 @@ def solve(lines):
         for j, elem in enumerate(row):
             if elem == "#":
                 stack.append((i,j))
-    total = 0
+    p1 = 0
+    p2 = 0
     while stack:
-        print(stack)
         current = stack.pop()
-        total += distance(stack, current, empties)
-    return total
+        p1 += distance(stack, current, empties, 2)
+        p2 += distance(stack, current, empties, 1000000)
+    return p1, p2
         
 
-def distance(stack, start, empties):
-    i,j = start
+def distance(stack, start, empties, n):
     total = 0
     rows = empties[0]
     cols = empties[1]
@@ -52,12 +52,11 @@ def distance(stack, start, empties):
         j, y = min(j,y), max(j,y)
         for row in rows:
             if i <= row <= x:
-                total += 999999
+                total += n-1
         for col in cols:
             if j <= col <= y:
-                total += 999999
+                total += n-1
         total += abs(x-i) + abs(y-j)
-        
     return total
     
 print(solve(lines))
