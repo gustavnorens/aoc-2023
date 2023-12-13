@@ -33,8 +33,7 @@ def solve(lines):
         for j, elem in enumerate(row):
             if elem == "#":
                 stack.append((i,j))
-    p1 = 0
-    p2 = 0
+    p1, p2 = 0, 0
     while stack:
         current = stack.pop()
         p1 += distance(stack, current, empties, 2)
@@ -44,23 +43,21 @@ def solve(lines):
 
 def distance(stack, start, empties, n):
     total = 0
-    rows = empties[0]
-    cols = empties[1]
+    i, j = start
     for x,y in stack:
-        i, j = start
-        i, x = min(i,x), max(i,x)
-        j, y = min(j,y), max(j,y)
-        for row in rows:
-            if i <= row <= x:
+        x1, x2 = min(i,x), max(i,x)
+        y1, y2 = min(j,y), max(j,y)
+        for row in empties[0]:
+            if x1 <= row <= x2:
                 total += n-1
-        for col in cols:
-            if j <= col <= y:
+        for col in empties[1]:
+            if y1 <= col <= y2:
                 total += n-1
-        total += abs(x-i) + abs(y-j)
+        total += abs(x2-x1) + abs(y2-y1)
     return total
     
 print(solve(lines))
-
+print("--- %s seconds ---" % (time.time() - start_time))
 
 
 

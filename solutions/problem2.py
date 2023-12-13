@@ -2,7 +2,7 @@ import uf
 import time
 start_time = time.time()
 
-games = uf.read_lines("input2.txt")[:-1]
+games = uf.read_lines("../in/2.in")[:-1]
 
 class Bag:
     def __init__(self):
