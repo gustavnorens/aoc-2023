@@ -22,7 +22,7 @@ vertices = set()
 
 def count_changes(j, line, r): #Part 2
     t = 0
-    for i in range(0, j):
+p    for i in range(0, j):
         if line[i] in "F7|S" and (r,i) in vertices:
             t += 1
     if t % 2 == 1:

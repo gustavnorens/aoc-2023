@@ -93,30 +93,4 @@ print(solve(lines))
 # print(from_game(game[1],numbers[1]))
 
 
-def shortest_past(graph: Graph, src, dst):
-    s = dijkstra(graph, src)
-    stack = []
-    res = []
-    cost = s[dst][0]
-    while dst != src:
-        stack.append(dst)
-        dst = s[dst][1]
-    stack.append(dst)
-    while stack:
-        res.append(stack.pop())
-    return cost, res
-
-def dijkstra(graph: Graph, node):
-    q = PriorityQueue()
-    s = {}
-    q.put((0,node,""))
-    while not q.empty():
-       weight, src, dst = q.get()
-       if src not in s.keys():
-               s[src] = weight, dst
-       for node, w in graph.vertices[src]:
-           if node not in s.keys():
-               q.put((w+weight, node, src))
-    return s
-
 print("--- %s seconds ---" % (time.time() - start_time))
