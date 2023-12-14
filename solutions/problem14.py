@@ -22,7 +22,6 @@ def fix_row(row):
                 j += 1
     return row
 
-
 def rotate(matrix):
     t = list(map(list, zip(*matrix)))
     return [row[::-1] for row in t]
@@ -38,13 +37,15 @@ def count(m):
 
 def p1(input):
     m = parse(input)
-    r = rotate(input)
+    r = rotate(m)
     r = [fix_row(row) for row in r]
+    for _ in range(3):
+        r = rotate(r)
     return count(r)
 
 def cycle(matrix):
     r = matrix
-    for i in range(4):
+    for _ in range(4):
         r = rotate(r)
         r = [fix_row(row) for row in r]
     return r
@@ -69,7 +70,7 @@ def p2(input):
     start = seen[key]
     return values[start + ((1000000000-start) % (loop-start))]
     
-print(p1(lines))
+print(p1(tests))
 print(p2(lines))
 
 print("--- %s seconds ---" % (time.time() - start_time))
