@@ -70,7 +70,7 @@ def p2(input):
     start = seen[key]
     return values[start + ((1000000000-start) % (loop-start))]
     
-print(p1(tests))
+print(p1(lines))
 print(p2(lines))
 
 print("--- %s seconds ---" % (time.time() - start_time))
