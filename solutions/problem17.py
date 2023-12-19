@@ -2,8 +2,8 @@ import time
 start_time = time.time()
 import uf
 
-lines = uf.read_lines("../in/17.in")[:-1]
-tests = uf.read_lines("../test/17.in")[:-1]
+lines = uf.read_lines("../in/day17.input")[:-1]
+tests = uf.read_lines("../test/17-2.in")[:-1]
 
 from queue import PriorityQueue
 
@@ -67,7 +67,7 @@ def dijk_p1(graph, start, end):
                     new_steps = 1
                 if d != opposite(direc):
                     q.put((w+weight, node, d, new_steps))
-    return v
+    return None
 
 def dijk_p2(graph, start, end):
     q = PriorityQueue()
@@ -81,7 +81,6 @@ def dijk_p2(graph, start, end):
         if key in v:
             continue
         v[key] = 0
-
         if steps <= 10:
             for node, w in graph[dst]:
                 d = dir(dst,node)
