@@ -78,14 +78,12 @@ def p1(puzzle):
     total = 0
     for rule in rules:
         if accepted(rule, wfs):
-            total += 1
+            total += sum(rule)
     return total
 
 def len_range(range):
     x,y = range
     return y-x+1
-
-#Let's look at a smaller example
 
 def calc_range(wfs):
     stack = []
