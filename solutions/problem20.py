@@ -95,7 +95,7 @@ def p1(puzzle):
 def p2(puzzle):
     config, conjun = parse(puzzle) 
     cycles = []
-    for i in range(1,10000):
+    for i in range(1,10000): #Assuming cycles exist within the first 10000, attempts
         ks = 0
         pm = 0
         dl = 0
@@ -155,7 +155,7 @@ def p2(puzzle):
         if vk == 1:
             cycles.append(i)
         if len(cycles) == 4:
-            return math.lcm(*cycles2)
+            return math.lcm(*cycles)
 
 print(p1(lines))
 print(p2(lines))
